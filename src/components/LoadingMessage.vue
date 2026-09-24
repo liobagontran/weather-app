@@ -1,14 +1,24 @@
 <template>
   <div class="loading-container">
-    <div class="spinner"></div>
-    <p class="loading-text">Fetching weather data...</p>
+    <svg class="spinner" width="44" height="44" viewBox="0 0 44 44">
+      <circle
+        class="spinner-track"
+        cx="22" cy="22" r="18"
+        fill="none" stroke-width="4"
+      />
+      <circle
+        class="spinner-arc"
+        cx="22" cy="22" r="18"
+        fill="none" stroke-width="4"
+        stroke-linecap="round"
+      />
+    </svg>
+    <p class="loading-text">Fetching weather…</p>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'LoadingMessage'
-}
+export default { name: 'LoadingMessage' }
 </script>
 
 <style scoped>
@@ -17,32 +27,23 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
-  animation: fadeIn 0.3s ease;
+  padding: 64px 20px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+.spinner { animation: spin 1.4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-.spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid #e2e8f0;
-  border-top-color: #6366f1;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.spinner-track { stroke: var(--md-surface-container-high); }
+.spinner-arc {
+  stroke: var(--md-primary);
+  stroke-dasharray: 90;
+  stroke-dashoffset: 60;
 }
 
 .loading-text {
-  margin-top: 20px;
-  color: #64748b;
-  font-size: 1rem;
+  margin-top: 18px;
+  font-size: 0.9rem;
   font-weight: 500;
+  color: var(--md-on-surface-variant);
 }
 </style>
